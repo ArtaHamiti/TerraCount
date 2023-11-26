@@ -29,10 +29,8 @@ def print_congratulations(winner: str):
 def count_category(players: list, category: str, no_of_players: int) -> list:
     points_list = []
     for player in players:
-        try:
-            number = int(input(f"Number of {category} for {player}: "))
-        except ValueError:
-            print("Not an integer")
+        number = input(f"Number of {category} for {player}: ")
+        number = input_to_int(number)
         if category == "Milestones":
             number = number * 5
         elif category == "Awards":
@@ -45,11 +43,11 @@ def count_category(players: list, category: str, no_of_players: int) -> list:
     return points_list
 
 
-def input_to_int(question: str) -> int:
-    input_value = input(question).strip()
-    while not input_value.isdigit():
-        input_value = input(f"{input_value} is not valid, please put in a positive integer: ")
-    return int(input_value)
+def input_to_int(input_str: str) -> int:
+    input_str = input_str.strip()
+    while not (input_str.isdigit()) or (input_str is None):
+        input_str = input(f"{input_str} is not valid, please put in a positive integer: ")
+    return int(input_str)
 
 
 def is_date_input_valid(input_value: str, format_str: str) -> bool:
@@ -73,7 +71,7 @@ def input_to_date(question: str) -> date:
 
 def main():
     file_path = Path(__file__).parent / "TerraCount_score_sheet_test.csv"
-    no_of_players = input_to_int("How many players are you?: ")
+    no_of_players = input_to_int(input("How many players are you?: "))
     names = [input(f"Please write the name of player {i + 1}: ") for i in range(no_of_players)]
     date_object = input_to_date("Please write today's date in the format 'dd.mm.yy': ")
     count_terra_points(names, date_object, file_path, no_of_players)
