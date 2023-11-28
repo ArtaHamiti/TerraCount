@@ -21,6 +21,9 @@ def count_terra_points(players: list) -> pd.DataFrame:
     category_lists = [count_category(players, category) for category in categories_str_list]
     df = pd.DataFrame(data=category_lists, columns=players, index=categories_str_list).transpose()
     df["Total score"] = df.sum(axis="columns")
+    if len(players) > 2:
+        df[awards] = df[awards] + df[second_places]
+        df.drop(columns=[second_places], axis=1, inplace=True)
     return df
 
 
