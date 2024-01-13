@@ -84,6 +84,8 @@ def is_date_input_valid(input_value: str, format_str: str) -> bool:
 def input_to_date(question: str) -> date:
     format_str = "%d.%m.%Y"
     user_input = input(question)
+    if not user_input:
+        return datetime.now().date()
     input_value = is_date_input_valid(user_input, format_str)
     while not input_value:
         correction_str = f"{user_input} is not in the correct format, please use the format 'dd.mm.yyyy': "
@@ -99,10 +101,10 @@ def input_not_none_or_digit(name: str) -> str:
 
 
 def main():
-    file_path = Path(__file__).parent / "TerraCount_score_sheet_test.csv"
+    file_path = Path("TerraCount_score_sheet_test.csv")
     no_of_players = input_to_int(input("How many players are you?: "), "players")
     names = [input_not_none_or_digit(input(f"Please write the name of player {i + 1}: ")) for i in range(no_of_players)]
-    date_object = input_to_date("Please write today's date in the format 'dd.mm.yy': ")
+    date_object = input_to_date("Please write today's date in the format 'dd.mm.yyyy': ")
     df = count_terra_points(names)
     winner = df["Total score"].idxmax()
     print_congratulations(winner)
