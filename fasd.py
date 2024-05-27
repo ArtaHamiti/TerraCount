@@ -29,6 +29,12 @@ def read_root():
     return HTMLResponse(template.render({"games": list(games), "headers": headers}))
 
 
+@app.get("/new_game")
+def read_root():
+    template = environment.get_template("new_game.html.j2")
+    return HTMLResponse(template.render())
+
+
 @app.get("/games/{game_id}")
 def read_item(game_id: str, q: Union[str, None] = None):
     return {"game_id": game_id, "q": q}
