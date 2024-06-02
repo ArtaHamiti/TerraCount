@@ -1,0 +1,13 @@
+<table>
+<thead>
+{% for column_name in headers %}
+<th> {{column_name}} <th>
+{% endfor %}
+</thead>
+{% endfor %}
+</table>
+
+<form method="POST" action="/test/">
+  <input name="test_name" type="text">
+  <input type="submit">
+</form>

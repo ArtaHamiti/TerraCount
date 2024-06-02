@@ -43,3 +43,8 @@ def read_item(game_id: str, q: Union[str, None] = None):
 @app.post("/all_games/")
 def read_item(game: str = Form()):
     return game
+
+
+@app.post("/test.html.j2/")
+def read_item(game: str = Form()):
+    return game
