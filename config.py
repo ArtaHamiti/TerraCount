@@ -13,7 +13,6 @@ def config(filename="database.ini", section="postgresql"):
             db_dict[param[0]] = param[1]
     else:
         raise Exception(f'Section{section} in not found in the {filename}')
-    print(db_dict)
-
+    return db_dict
 
 config()
