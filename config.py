@@ -15,5 +15,4 @@ def config(filename="database.ini", section="postgresql"):
         raise Exception(f'Section{section} in not found in the {filename}')
     return db_dict
 
-
 config()
