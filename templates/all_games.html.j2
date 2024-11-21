@@ -1,0 +1,22 @@
+<table>
+<thead>
+{% for column_name in headers %}
+<th> {{column_name}} <th>
+{% endfor %}
+</th>
+</tr>
+</thead>
+{% for game in games %}
+<tr>
+<td>{{ game["Date"] }}</td>
+<td>{{ game["Awards"] }}</td>
+<td>{{ game["Forests"]}} </td>
+<td>{{ game["Milestones"]}} </td>
+</tr>
+{% endfor %}
+</table>
+
+<form method="POST" action="/games/">
+  <input name="game" type="number">
+  <input type="submit">
+</form>
