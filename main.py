@@ -8,7 +8,6 @@ import logging
 
 from starlette.templating import Jinja2Templates
 
-
 app = FastAPI()
 
 templates = Jinja2Templates(directory="templates")
@@ -32,7 +31,8 @@ def read_root(request: Request):
         headers = games.fieldnames
         games = list(games)
     print("games:", str(games))
-    return templates.TemplateResponse(request, name="all_games.html.j2", context={"games": list(games), "headers": headers})
+    return templates.TemplateResponse(request, name="all_games.html.j2",
+                                      context={"games": list(games), "headers": headers})
 
 
 @app.get("/test/")
@@ -43,6 +43,13 @@ def read_root(request: Request):
 @app.get("/new_game")
 def read_root(request: Request):
     return templates.TemplateResponse(request, name="new_game.html.j2")
+
+
+@app.post("/new_game", response_class=HTMLResponse)
+def post_basic_form(request: Request, fname: str = Form(...), sname: str = Form(...)):
+    print(f'fname: {fname}')
+    print(f'sname: {sname}')
+    return templates.TemplateResponse("new_game.html.j2", {"request": request, "fname":fname, "sname": sname})
 
 
 @app.get("/games/{game_id}")
