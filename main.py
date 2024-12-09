@@ -24,35 +24,32 @@ def read_root(request: Request):
         users = [game["Name"] for game in games]
     return templates.TemplateResponse(request, name="frontpage.html.j2", context={"users": users})
 
-"""
+
 @app.get("/games2")
-def read_root():
-    template = environment.get_template("all_games.html.j2")
+def read_root(request: Request):
     with open("Terraforming_score_sheet.csv") as f:
         games = DictReader(f, delimiter=',', quotechar='"')
         headers = games.fieldnames
         games = list(games)
     print("games:", str(games))
-    return HTMLResponse(template.render({"games": list(games), "headers": headers}))
+    return templates.TemplateResponse(request, name="all_games.html.j2", context={"games": list(games), "headers": headers})
 
 
 @app.get("/test/")
-def read_root():
-    template = environment.get_template("test.html.j2")
-    return HTMLResponse(template.render())
+def read_root(request: Request):
+    return templates.TemplateResponse(request, name="test.html.j2")
 
 
 @app.get("/new_game")
-def read_root():
-    template = environment.get_template("new_game.html.j2")
-    return HTMLResponse(template.render())
+def read_root(request: Request):
+    return templates.TemplateResponse(request, name="new_game.html.j2")
 
 
 @app.get("/games/{game_id}")
 def read_item(game_id: str, q: Union[str, None] = None):
     return {"game_id": game_id, "q": q}
 
-"""
+
 @app.post("/all_games/")
 def read_item(game: str = Form()):
     return game
