@@ -3,17 +3,21 @@ document.getElementById('addButton').addEventListener('click', function() {
   var newFormGroup = document.createElement('div');
   newFormGroup.className = 'form-group';
 
-  // Create a new input element
-  var newField = document.createElement('input');
-  newField.type = 'text';
-  newField.name = 'dynamicField';
+  players = document.getElementById('players').value;
+  console.log("playerssss:", players)
 
-  number = document.getElementById('players');
+  for (let i = 0; i <players; i++ ) {
+    // Create a new input element
+    var newField = document.createElement('input');
+    newField.type = 'text';
+    newField.name = 'dynamicField';
 
-  // Append the new input element to the new div
-  //for (let i = 0; i <players; i++ )
-  newFormGroup.appendChild(newField);
+    console.log("iteration:", i)
+    // Append the new input element to the new div
+    newFormGroup.appendChild(newField);
 
-  // Append the new div to the form
-  document.getElementById('dynamicForm').appendChild(newFormGroup);
+    // Append the new div to the form
+    document.getElementById('dynamicForm').appendChild(newFormGroup);
+  }
+
 });
