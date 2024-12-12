@@ -8,7 +8,10 @@ document.getElementById('addButton').addEventListener('click', function() {
   newField.type = 'text';
   newField.name = 'dynamicField';
 
+  number = document.getElementById('players');
+
   // Append the new input element to the new div
+  //for (let i = 0; i <players; i++ )
   newFormGroup.appendChild(newField);
 
   // Append the new div to the form
