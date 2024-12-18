@@ -4,10 +4,10 @@ document.getElementById('addButton').addEventListener('click', function() {
     console.log("Players:", players)
 
     if (players == 1) {
-        document.write("Great, you went solo!");
+        document.getElementById("second p").innerHTML = "<br> Great, you went solo!";
         console.log("if statement DONE");
     }  else {
-        document.write("Okay, I have registered ", players, " players!");
+        document.getElementById("second p").innerHTML = "<br> Okay, I have registered " + players + " players.";
 
         // Create a new div element to hold the new input field
         var newFormGroup = document.createElement('div');
