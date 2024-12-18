@@ -1,32 +1,30 @@
-document.getElementById('addButton').addEventListener('click', function() {
+document.getElementById('playerButton').addEventListener('click', function() {
 
     players = document.getElementById('players').value;
-    console.log("Players:", players)
 
     if (players == 1) {
         document.getElementById("second p").innerHTML = "<br> Great, you went solo!";
-        console.log("if statement DONE");
     }  else {
-        document.getElementById("second p").innerHTML = "<br> Okay, I have registered " + players + " players.";
+        document.getElementById("second p").innerHTML = "<br> Okay, I have registered "
+        + players + " players. <br> <br>What is each player's terraforming points score?";
 
-        // Create a new div element to hold the new input field
-        var newFormGroup = document.createElement('div');
-        newFormGroup.className = 'form-group';
+        terraformingPointsDiv = document.getElementById("terraforming points")
+        terraformingPointsDiv.innerHTML = " ";
 
         for (let i = 0; i <players; i++ ) {
-            console.log("check number 1")
-            // Create a new input element
-            /*
-            var newField = document.createElement('input');
-            newField.type = 'text';
-            newField.name = 'dynamicField';
+            var newTerraField = document.createElement('input');
+            newTerraField.type = 'number';
+            newTerraField.name = 'terrapoints field';
+            newTerraField.max = 500;
+            newTerraField.min = 20;
+            //newTerraField.defaultValue = 3;
 
-            console.log("iteration:", i)
-            // Append the new input element to the new div
-            newFormGroup.appendChild(newField);
+            terraformingPointsDiv.appendChild(newTerraField);
 
-            // Append the new div to the form
-            document.getElementById('dynamicForm').appendChild(newFormGroup); */
+        document.getElementById('dynamicForm').appendChild(terraformingPointsDiv);
+
+
+
         }
     }
 });
