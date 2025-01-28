@@ -1,8 +1,8 @@
 point_types = ["terraforming points", "milestones", "awards", "trees", "city points", "card points"]
 
-function ask_for_points(players, point_type) {
+function ask_for_points(players, point_type, paragraph) {
 
-        document.getElementById("second p").innerHTML = "<br> Okay, I have registered "
+        document.getElementById(paragraph).innerHTML = "<br> Okay, I have registered "
         + players + " players. <br> <br>What is each player's "+ point_type +" score?";
 
         terraformingPointsDiv = document.getElementById(point_type)
@@ -39,9 +39,9 @@ document.getElementById('playerButton').addEventListener('click', function() {
         document.getElementById("second p").innerHTML = "<br> Great, you went solo!";
     }  else {
 
-        ask_for_points(players, point_types[0])
+        ask_for_points(players, point_types[0], "p2")
 
-        ask_for_points(players, point_types[1])
+        ask_for_points(players, point_types[1], "p3")
 
 
 
