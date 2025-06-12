@@ -1,11 +1,10 @@
 point_types = ["terraforming points", "milestones", "awards", "trees", "city points", "card points"]
 
-function ask_for_points(players, point_type, paragraph) {
+function ask_for_points(players, point_type, iter) {
 
-        document.getElementById(paragraph).innerHTML =" <br>What is each player's "+ point_type +" score?";
-
-        terraformingPointsDiv = document.getElementById(point_type)
-        terraformingPointsDiv.innerHTML = " ";
+        para = document.getElementById("p2")
+        para.innerHTML =" <br>What is each player's "+ point_type +" score?";
+        PointsDiv = document.getElementById("points")
 
         for (let i = 1; i <players+1; i++ ) {
             var newTerraField = document.createElement('input');
@@ -19,12 +18,22 @@ function ask_for_points(players, point_type, paragraph) {
             paragraph.appendChild(pText);
 
 
-            terraformingPointsDiv.appendChild(paragraph);
-            terraformingPointsDiv.appendChild(newTerraField);
+            PointsDiv.appendChild(paragraph);
+            PointsDiv.appendChild(newTerraField);
             var breakLine = document.createElement("br");
-            terraformingPointsDiv.appendChild(breakLine);
+            PointsDiv.appendChild(breakLine);
 
         }
+
+        var x = document.createElement("INPUT");
+        x.setAttribute("type", "submit");
+        PointsDiv.appendChild(x);
+        x.onclick = function() {
+        PointsDiv.innerHTML = " ";
+        para.innerHTML = " ";
+        iter +=1
+        }
+
 
 
 }
@@ -41,9 +50,12 @@ document.getElementById('playerButton').addEventListener('click', function() {
         document.getElementById("p1").innerHTML = "<br> Okay, I have registered "
         + players + " players."
 
-        ask_for_points(players, point_types[0], "p2")
+        var iteration = 0
 
-        ask_for_points(players, point_types[1], "p3")
+
+        ask_for_points(players, point_types[iteration], iteration)
+        
+
 
 
 

@@ -44,13 +44,12 @@ def read_root(request: Request):
 def read_root(request: Request):
     return templates.TemplateResponse(request, name="new_game.html.j2")
 
-'''
-@app.post("/new_game", response_class=HTMLResponse)
-def post_basic_form(request: Request, fname: str = Form(...), sname: str = Form(...)):
+
+@app.post("/submit", response_class=HTMLResponse)
+def post_basic_form(request: Request, fname: str = Form(...)):
     print(f'fname: {fname}')
-    print(f'sname: {sname}')
-    return templates.TemplateResponse("new_game.html.j2", {"request": request, "fname":fname, "sname": sname})
-'''
+    return templates.TemplateResponse("new_game.html.j2", {"request": request, "fname":fname})
+
 
 
 
