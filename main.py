@@ -1,48 +1,56 @@
 from typing import Union
 from csv import DictReader
-from fastapi import FastAPI, Form
+from fastapi import FastAPI, Form, Request
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from jinja2 import Environment, FileSystemLoader
 import logging
 
-environment = Environment(loader=FileSystemLoader("templates/"))
+from starlette.templating import Jinja2Templates
+
 app = FastAPI()
+
+templates = Jinja2Templates(directory="templates")
 
 # Mount the static files directory
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
 
-@app.get("/")
-def read_root():
-    template = environment.get_template("frontpage.html.j2")
+@app.get("/", response_class=HTMLResponse)
+def read_root(request: Request):
     with open("Terraforming_score_sheet.csv") as f:
         games = DictReader(f, delimiter=',', quotechar='"')
         users = [game["Name"] for game in games]
-    return HTMLResponse(template.render({"users": users}))
+    return templates.TemplateResponse(request, name="frontpage.html.j2", context={"users": users})
 
 
 @app.get("/games2")
-def read_root():
-    template = environment.get_template("all_games.html.j2")
+def read_root(request: Request):
     with open("Terraforming_score_sheet.csv") as f:
         games = DictReader(f, delimiter=',', quotechar='"')
         headers = games.fieldnames
         games = list(games)
     print("games:", str(games))
-    return HTMLResponse(template.render({"games": list(games), "headers": headers}))
+    return templates.TemplateResponse(request, name="all_games.html.j2",
+                                      context={"games": list(games), "headers": headers})
 
 
 @app.get("/test/")
-def read_root():
-    template = environment.get_template("test.html.j2")
-    return HTMLResponse(template.render())
+def read_root(request: Request):
+    return templates.TemplateResponse(request, name="test.html.j2")
 
 
 @app.get("/new_game")
-def read_root():
-    template = environment.get_template("new_game.html.j2")
-    return HTMLResponse(template.render())
+def read_root(request: Request):
+    return templates.TemplateResponse(request, name="new_game.html.j2")
+
+
+@app.post("/submit", response_class=HTMLResponse)
+def post_basic_form(request: Request, fname: str = Form(...)):
+    print(f'fname: {fname}')
+    return templates.TemplateResponse("new_game.html.j2", {"request": request, "fname":fname})
+
+
 
 
 @app.get("/games/{game_id}")

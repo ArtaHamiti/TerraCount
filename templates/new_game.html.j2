@@ -1,20 +1,43 @@
+<!DOCTYPE html>
+<html>
 <head>
     <style>
     body {background-color: teal;}
     </style>
-    <script src="/static/new_game.js"></script>
 </head>
 
 <body>
-    <h1>Register a new game here</h1>
-        <form action="/all_games">
-            <label for: "fname"> First name:</label>
-            <input type = "text" id="fname" name="first_name">
-            <br>
-        </form>
-        <form action="/all_games">
-            <label for: "sname"> Second name:</label>
-            <input type = "text" id="sname" name="first_name">
-            <button onclick="test()">Testing</button>
-        </form>
+  <a href="/"> Back to main page </a>
+  <p id="first p"> Hey there. </p>
+
+  <form id="dynamicForm">
+    <div">
+        <label for="players">How many players are you?:</label>
+        <input type="number" min=1 max=5 id="players" name="players">
+        <button type="button" id="playerButton">Submit player number</button>
+    </div>
+
+    <p id="p1"> </p>
+
+    <p id="p2"> </p>
+
+
+    <div id="points">
+
+    </div>
+
+
+  </form>
+
+  <h2>Enter name please sir or madam</h2>
+  <form action="/submit" method="post">
+    <input type="text" name="fname" required>
+    <button type="submit">Submit name</button>
+  </form>
+
+
+  <script src="static/testing_new_game.js"></script>
+  <! --  Source =  https://medium.com/@AlexanderObregon/beginners-guide-to-creating-dynamic-forms-with-javascript-10aef6a8843d-->
 </body>
+</html>
+
