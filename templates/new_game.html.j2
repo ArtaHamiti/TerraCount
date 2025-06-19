@@ -10,11 +10,14 @@
   <a href="/"> Back to main page </a>
   <p id="first p"> Hey there. </p>
 
-  <form action="/submit" method="post" id="dynamicForm">
+  <form action="/submit" method="post" id="dynamicForm" required>
     <div">
         <label for="players">How many players are you?:</label>
         <input type="number" min=1 max=5 id="players" name="players">
-        <button type="submit" id="playerButton">Submit player number</button>
+        <button type="button" id="playerButton">Set player number</button>
+
+
+
     </div>
 
     <p id="p1"> </p>
@@ -25,7 +28,7 @@
     <div id="points">
 
     </div>
-
+    <button type="submit" id="playerButton">Submit player number</button>
   </form>
 
  <!--
