@@ -1,27 +1,28 @@
 point_types = ["terraforming points", "milestones", "awards", "trees", "city points", "card points"]
 
+//create main function
 function ask_for_points(players, point_type, iter) {
 
         para = document.getElementById("p2")
         para.innerHTML =" <br>What is each player's "+ point_type +" score?";
         PointsDiv = document.getElementById("points")
 
+        // make input line for each player
         for (let i = 1; i <players+1; i++ ) {
             var newTerraField = document.createElement('input');
+            const label = document.createElement("label");
+            label.textContent = `Player ${i} score`;
+
             newTerraField.type = 'number';
             newTerraField.name = point_type;
             newTerraField.max = 500;
             newTerraField.min = 20;
+            newTerraField.required = true;
 
-            const paragraph = document.createElement("a");
-            const pText = document.createTextNode("Player "+ i + " ");
-            paragraph.appendChild(pText);
-
-
-            PointsDiv.appendChild(paragraph);
+            //put text and input box on same line and then a br to make a new line
+            PointsDiv.appendChild(label);
             PointsDiv.appendChild(newTerraField);
-            var breakLine = document.createElement("br");
-            PointsDiv.appendChild(breakLine);
+            PointsDiv.appendChild(document.createElement("br"));
 
         }
 
