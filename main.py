@@ -46,9 +46,12 @@ def read_root(request: Request):
 
 
 @app.post("/submit", response_class=HTMLResponse)
-def post_basic_form(request: Request, fname: str = Form(...)):
-    print(f'fname: {fname}')
-    return templates.TemplateResponse("new_game.html.j2", {"request": request, "fname":fname})
+def post_basic_form(request: Request, players: str = Form(...)):
+    print(f'no of players: {players}')
+
+    with open("TerraTest1.txt", "a") as f:
+        f.write(players + "\n")
+    return templates.TemplateResponse("new_game.html.j2", {"request": request, "players": players})
 
 
 
